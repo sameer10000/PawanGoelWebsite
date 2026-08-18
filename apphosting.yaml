@@ -1,0 +1,37 @@
+# Firebase App Hosting configuration.
+#
+# Runs the full Next.js app with server rendering on Cloud Run. Secrets live in
+# Google Secret Manager — create each one before the first deploy:
+#
+#   firebase apphosting:secrets:set DATABASE_URL
+#   firebase apphosting:secrets:set SESSION_SECRET
+
+runConfig:
+  # A solo practice site. Small instances are plenty, and scaling to zero
+  # between visits keeps the bill near nothing.
+  cpu: 1
+  memoryMiB: 512
+  minInstances: 0
+  maxInstances: 2
+  concurrency: 80
+
+env:
+  - variable: NEXT_PUBLIC_SITE_URL
+    value: https://drpawangoel.com
+    availability:
+      - BUILD
+      - RUNTIME
+
+  # Needed at BUILD as well as RUNTIME: the build regenerates the offline
+  # content snapshot from the database. If the database is unreachable at build
+  # time the previous snapshot is kept and the build still succeeds.
+  - variable: DATABASE_URL
+    secret: DATABASE_URL
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: SESSION_SECRET
+    secret: SESSION_SECRET
+    availability:
+      - RUNTIME

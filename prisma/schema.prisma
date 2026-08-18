@@ -1,0 +1,202 @@
+// Data model for drpawangoel.com
+// Everything a non-developer needs to change lives in here and is editable from /admin.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// Singleton row (id = 1) holding site-wide text and contact details.
+model Settings {
+  id                 Int      @id @default(1)
+  doctorName         String
+  qualifications     String
+  headline           String
+  subheadline        String
+  bioShort           String
+  bioLong            String
+  experienceYears    Int      @default(8)
+  registrationNo     String?
+  primaryPhone       String
+  whatsappNumber     String
+  email              String
+  announcement       String?
+  announcementActive Boolean  @default(false)
+  metaTitle          String
+  metaDescription    String
+  updatedAt          DateTime @updatedAt
+}
+
+/// Degrees, past positions, memberships and awards. Drives the credentials page.
+model Credential {
+  id          Int     @id @default(autoincrement())
+  kind        String // degree | position | membership | award
+  title       String
+  institution String?
+  period      String?
+  detail      String?
+  sortOrder   Int     @default(0)
+  published   Boolean @default(true)
+
+  @@index([kind, sortOrder])
+}
+
+/// A hospital or clinic where the doctor consults.
+model Location {
+  id          Int     @id @default(autoincrement())
+  slug        String  @unique
+  name        String
+  kind        String // hospital | clinic
+  addressLine String
+  area        String
+  city        String  @default("Delhi")
+  state       String  @default("Delhi")
+  pincode     String?
+  mapUrl      String?
+  mapEmbedUrl String?
+  phone       String?
+  fee         Int?
+  notes       String?
+  bookingUrl  String?
+  isPrimary   Boolean @default(false)
+  published   Boolean @default(true)
+  sortOrder   Int     @default(0)
+
+  slots        ScheduleSlot[]
+  closures     Closure[]
+  appointments Appointment[]
+}
+
+/// One recurring weekly OPD window at a location.
+model ScheduleSlot {
+  id         Int      @id @default(autoincrement())
+  locationId Int
+  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  dayOfWeek  Int // 0 = Sunday ... 6 = Saturday
+  startTime  String // "10:00" 24h
+  endTime    String // "12:00" 24h
+
+  @@index([locationId, dayOfWeek])
+}
+
+/// A one-off cancellation. locationId null means unavailable everywhere that day.
+model Closure {
+  id         Int       @id @default(autoincrement())
+  date       DateTime
+  locationId Int?
+  location   Location? @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  reason     String?
+
+  @@index([date])
+}
+
+/// Conditions treated — one SEO landing page each.
+model Condition {
+  id              Int     @id @default(autoincrement())
+  slug            String  @unique
+  name            String
+  summary         String
+  body            String  @default("")
+  symptoms        String  @default("") // one per line
+  whenToSee       String  @default("") // one per line
+  sortOrder       Int     @default(0)
+  featured        Boolean @default(false)
+  published       Boolean @default(true)
+  metaTitle       String?
+  metaDescription String?
+
+  faqs Faq[]
+}
+
+/// Procedures and technology offered (CGM, insulin pumps, etc).
+model Service {
+  id        Int     @id @default(autoincrement())
+  slug      String  @unique
+  name      String
+  summary   String
+  body      String  @default("")
+  sortOrder Int     @default(0)
+  published Boolean @default(true)
+}
+
+model Testimonial {
+  id              Int     @id @default(autoincrement())
+  patientName     String
+  area            String?
+  text            String
+  rating          Int     @default(5)
+  consentRecorded Boolean @default(false)
+  published       Boolean @default(false)
+  sortOrder       Int     @default(0)
+}
+
+model Faq {
+  id          Int        @id @default(autoincrement())
+  question    String
+  answer      String
+  conditionId Int?
+  condition   Condition? @relation(fields: [conditionId], references: [id], onDelete: SetNull)
+  sortOrder   Int        @default(0)
+  published   Boolean    @default(true)
+}
+
+/// Uploaded images: portrait, clinic photos, equipment.
+///
+/// Metadata only — the bytes live in PhotoFile so that listing photos never
+/// drags megabytes of image data along with it.
+model Photo {
+  id          Int      @id @default(autoincrement())
+  /// Random, immutable, and used in the URL, which lets the route handler
+  /// serve these with a one-year cache header.
+  key         String   @unique
+  /// Always "/media/<key>". Stored so pages and the snapshot need no logic.
+  url         String
+  contentType String
+  alt         String
+  caption     String?
+  category    String   @default("clinic") // portrait | clinic | equipment | team
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  file PhotoFile?
+}
+
+/// The image bytes, kept in their own table and only ever loaded by the
+/// /media/[key] route handler.
+model PhotoFile {
+  photoId Int   @id
+  photo   Photo @relation(fields: [photoId], references: [id], onDelete: Cascade)
+  data    Bytes
+}
+
+/// Appointment requests submitted from the public site.
+model Appointment {
+  id            Int       @id @default(autoincrement())
+  name          String
+  phone         String
+  email         String?
+  locationId    Int?
+  location      Location? @relation(fields: [locationId], references: [id], onDelete: SetNull)
+  preferredDate DateTime?
+  preferredTime String?
+  concern       String?
+  message       String?
+  status        String    @default("new") // new | confirmed | completed | cancelled
+  adminNotes    String?
+  createdAt     DateTime  @default(now())
+
+  @@index([status, createdAt])
+}
+
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime @default(now())
+}

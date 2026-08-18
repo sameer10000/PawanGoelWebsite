@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif-display), ui-serif, Georgia, serif;
+
+  /* Brand — calm clinical teal. Change these six and the whole site follows. */
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #d9f5f0;
+  --color-brand-200: #a7e8dd;
+  --color-brand-300: #6ed3c5;
+  --color-brand-400: #35b6a6;
+  --color-brand-500: #17998b;
+  --color-brand-600: #0d7b71;
+  --color-brand-700: #0f625b;
+  --color-brand-800: #114e4a;
+  --color-brand-900: #12403e;
+  --color-brand-950: #042523;
+
+  /* Neutrals with a hint of warmth so the pages don't read cold. */
+  --color-ink-50: #f8f9fa;
+  --color-ink-100: #f1f3f4;
+  --color-ink-200: #e4e7e9;
+  --color-ink-300: #cbd1d5;
+  --color-ink-400: #9aa4ab;
+  --color-ink-500: #6c777e;
+  --color-ink-600: #4e585f;
+  --color-ink-700: #3b444a;
+  --color-ink-800: #262d32;
+  --color-ink-900: #171c20;
+
+  --color-accent-500: #c2703d;
+  --color-accent-100: #fbeee4;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-ink-700 antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-ink-900;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  /* Patients skew older — keep focus rings obvious. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-600;
+  }
+}
+
+/* Declared as a utility (not a component class) so the variants below can @apply it. */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: --spacing(2);
+  border-radius: var(--radius-lg);
+  padding-inline: --spacing(5);
+  padding-block: --spacing(3);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 600;
+  transition-property: color, background-color, border-color;
+  transition-duration: 150ms;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
+  }
+
+  .container-prose {
+    @apply mx-auto w-full max-w-3xl px-5 sm:px-6;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-600 text-white hover:bg-brand-700;
+  }
+
+  .btn-secondary {
+    @apply btn border border-ink-300 bg-white text-ink-800 hover:border-brand-500 hover:text-brand-700;
+  }
+
+  .btn-whatsapp {
+    @apply btn bg-[#1faa54] text-white hover:bg-[#188f45];
+  }
+
+  .btn-ghost {
+    @apply btn px-3 py-2 text-ink-600 hover:bg-ink-100 hover:text-ink-900;
+  }
+
+  .btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-700;
+  }
+
+  .card {
+    @apply rounded-xl border border-ink-200 bg-white p-6;
+  }
+
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink-800;
+  }
+
+  .input {
+    @apply w-full rounded-lg border border-ink-300 bg-white px-3.5 py-2.5 text-[15px] text-ink-900
+           placeholder:text-ink-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25
+           focus:outline-none;
+  }
+
+  .hint {
+    @apply mt-1.5 text-xs text-ink-500;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold tracking-[0.14em] text-brand-600 uppercase;
+  }
+}
+
+/* Long-form clinical copy */
+.prose-clinical {
+  @apply text-[17px] leading-relaxed text-ink-700;
+}
+.prose-clinical h2 {
+  @apply mt-10 mb-3 text-xl;
+}
+.prose-clinical p {
+  @apply mb-5;
+}
+.prose-clinical ul {
+  @apply mb-5 space-y-2 pl-5;
+}
+.prose-clinical li {
+  @apply list-disc marker:text-brand-400;
+}
+.prose-clinical strong {
+  @apply font-semibold text-ink-900;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
