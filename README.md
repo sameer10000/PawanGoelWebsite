@@ -7,8 +7,10 @@ patients through search.
 **Stack:** Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · Prisma 7 ·
 PostgreSQL
 
-**Deployment:** Firebase App Hosting (the app) + Railway (Postgres). Two
-providers, nothing else.
+**Deployment:** Vercel (the app) + Railway (Postgres). Two providers, nothing
+else.
+
+**Live:** https://drpawangoel.vercel.app
 
 ---
 
@@ -74,9 +76,9 @@ To deliberately restore the starter data, run `SEED_FORCE=1 npm run db:seed`.
 ## Architecture
 
 ```
-Firebase App Hosting ──► Next.js app, server-rendered on Cloud Run
-                          │
-                          └──► Railway Postgres  (content, appointments, photos)
+Vercel ──► Next.js app, server-rendered
+            │
+            └──► Railway Postgres  (content, appointments, photos)
 ```
 
 ### Staying up when the database isn't
@@ -195,20 +197,36 @@ DATABASE_URL="<railway url>" npm run db:push
 DATABASE_URL="<railway url>" npm run db:seed
 ```
 
-### 2. Firebase App Hosting — the app
+### 2. Vercel — the app
 
-Create the two secrets, then connect the GitHub repo:
+Already linked to the project `drpawangoel`. Deploy with:
 
 ```bash
-firebase apphosting:secrets:set DATABASE_URL
-firebase apphosting:secrets:set SESSION_SECRET      # openssl rand -base64 48
+vercel --prod
 ```
 
-`apphosting.yaml` already declares both, along with instance sizing and which
-variables are needed at build versus runtime. Update `NEXT_PUBLIC_SITE_URL` in
-that file once the domain is bought.
+Three environment variables are set for production, preview and development:
+`DATABASE_URL`, `SESSION_SECRET` and `NEXT_PUBLIC_SITE_URL`.
 
-### 3. Checks before launch
+> **Setting env vars from PowerShell:** do not pipe values into
+> `vercel env add`. PowerShell prepends a UTF-8 BOM, which silently corrupts
+> the value — a BOM in `DATABASE_URL` breaks the connection while the site
+> still appears to work, because reads fall back to the snapshot. Write the
+> value to a file with `UTF8Encoding($false)` and redirect it into stdin
+> instead.
+
+### 3. Checking a deployment
+
+`/media/<anything>` is a quick database health probe:
+
+- **404** — Postgres is reachable, the row simply doesn't exist
+- **503** — Postgres is unreachable, and the site is running on snapshot
+  fallback
+
+Page loads alone don't prove the database works, precisely because the
+fallback is doing its job.
+
+### 4. Checks before launch
 
 - [ ] Verify every timing, fee and phone number with Dr. Goel
 - [ ] Upload a professional portrait — the highest-impact item on this list
@@ -220,8 +238,9 @@ that file once the domain is bought.
 
 ### Notes
 
-- **Pick the same region for both** (Mumbai / `asia-south1` where available).
-  Every query crosses providers, so region mismatch shows up as latency.
+- **Regions differ between providers.** Every query crosses from Vercel to
+  Railway, so keep both as close as possible. The 60-second read cache absorbs
+  most of the cost.
 - **`npm audit` reports a high-severity advisory** in `deepmerge-ts`, reached
   through `@prisma/config`. It is a build-time CLI dependency, not shipped to
   production, and the only offered fix is a major Prisma downgrade.

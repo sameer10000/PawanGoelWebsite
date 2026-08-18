@@ -30,3 +30,8 @@ npm-debug.log*
 .idea
 next-env.d.ts
 tsconfig.tsbuildinfo
+
+.vercel
+.env*
+# ...but the documented template must stay in the repo
+!.env.example
