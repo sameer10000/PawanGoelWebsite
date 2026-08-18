@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T07:22:05.903Z",
+  "generatedAt": "2026-08-18T08:30:32.405Z",
   "settings": {
     "id": 1,
     "doctorName": "Dr. Pawan Goel",
@@ -17,7 +17,7 @@
     "announcementActive": false,
     "metaTitle": "Dr. Pawan Goel — Endocrinologist & Diabetes Specialist in Shalimar Bagh, Delhi",
     "metaDescription": "Consultant Endocrinologist in Delhi (MD AIIMS, DM SGPGI) treating diabetes, thyroid disorders, PCOS, obesity and hormonal problems. Consults in Shalimar Bagh, Punjabi Bagh and Bahadurgarh.",
-    "updatedAt": "2026-08-16T14:37:16.619Z"
+    "updatedAt": "2026-08-18T08:29:52.295Z"
   },
   "locations": [
     {
@@ -41,42 +41,42 @@
       "sortOrder": 1,
       "slots": [
         {
-          "id": 2,
+          "id": 1,
           "locationId": 1,
           "dayOfWeek": 1,
           "startTime": "17:00",
           "endTime": "21:00"
         },
         {
-          "id": 3,
+          "id": 2,
           "locationId": 1,
           "dayOfWeek": 2,
           "startTime": "17:00",
           "endTime": "21:00"
         },
         {
-          "id": 4,
+          "id": 3,
           "locationId": 1,
           "dayOfWeek": 3,
           "startTime": "17:00",
           "endTime": "21:00"
         },
         {
-          "id": 5,
+          "id": 4,
           "locationId": 1,
           "dayOfWeek": 4,
           "startTime": "17:00",
           "endTime": "21:00"
         },
         {
-          "id": 6,
+          "id": 5,
           "locationId": 1,
           "dayOfWeek": 5,
           "startTime": "17:00",
           "endTime": "21:00"
         },
         {
-          "id": 7,
+          "id": 6,
           "locationId": 1,
           "dayOfWeek": 6,
           "startTime": "17:00",
@@ -105,42 +105,42 @@
       "sortOrder": 2,
       "slots": [
         {
-          "id": 8,
+          "id": 7,
           "locationId": 2,
           "dayOfWeek": 1,
           "startTime": "10:00",
           "endTime": "12:00"
         },
         {
-          "id": 9,
+          "id": 8,
           "locationId": 2,
           "dayOfWeek": 2,
           "startTime": "10:00",
           "endTime": "12:00"
         },
         {
-          "id": 10,
+          "id": 9,
           "locationId": 2,
           "dayOfWeek": 3,
           "startTime": "10:00",
           "endTime": "12:00"
         },
         {
-          "id": 11,
+          "id": 10,
           "locationId": 2,
           "dayOfWeek": 4,
           "startTime": "10:00",
           "endTime": "12:00"
         },
         {
-          "id": 12,
+          "id": 11,
           "locationId": 2,
           "dayOfWeek": 5,
           "startTime": "10:00",
           "endTime": "12:00"
         },
         {
-          "id": 13,
+          "id": 12,
           "locationId": 2,
           "dayOfWeek": 6,
           "startTime": "10:00",
@@ -169,21 +169,21 @@
       "sortOrder": 3,
       "slots": [
         {
-          "id": 14,
+          "id": 13,
           "locationId": 3,
           "dayOfWeek": 2,
           "startTime": "14:00",
           "endTime": "16:00"
         },
         {
-          "id": 15,
+          "id": 14,
           "locationId": 3,
           "dayOfWeek": 4,
           "startTime": "14:00",
           "endTime": "16:00"
         },
         {
-          "id": 16,
+          "id": 15,
           "locationId": 3,
           "dayOfWeek": 6,
           "startTime": "14:00",
@@ -212,7 +212,7 @@
       "sortOrder": 4,
       "slots": [
         {
-          "id": 17,
+          "id": 16,
           "locationId": 4,
           "dayOfWeek": 6,
           "startTime": "16:00",
