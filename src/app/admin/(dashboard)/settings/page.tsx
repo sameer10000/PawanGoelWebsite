@@ -212,6 +212,53 @@ export default async function AdminSettingsPage() {
         </AdminCard>
 
         <AdminCard
+          title="Clinic photo gallery"
+          description="Shows clinic, equipment and team photos on the About page. Portraits are excluded — they appear on the home and About pages already."
+        >
+          <div className="space-y-4">
+            <label className="flex items-center gap-2.5 text-sm text-ink-800">
+              <input
+                type="checkbox"
+                name="galleryEnabled"
+                defaultChecked={settings.galleryEnabled}
+                className="h-4 w-4 rounded border-ink-300 text-brand-600"
+              />
+              Show the gallery on the website
+            </label>
+            <p className="hint">
+              Unticking this hides the whole section at once, without changing
+              individual photos. The gallery is also hidden automatically when
+              there are no clinic photos to show.
+            </p>
+            <div>
+              <label htmlFor="galleryHeading" className="label">
+                Section heading
+              </label>
+              <input
+                id="galleryHeading"
+                name="galleryHeading"
+                defaultValue={settings.galleryHeading}
+                className="input"
+              />
+            </div>
+            <div>
+              <label htmlFor="galleryIntro" className="label">
+                Short introduction
+              </label>
+              <textarea
+                id="galleryIntro"
+                name="galleryIntro"
+                rows={2}
+                defaultValue={settings.galleryIntro}
+                placeholder="The clinic in Shalimar Bagh, with parking available on the street outside."
+                className="input"
+              />
+              <p className="hint">Optional — leave blank to show none.</p>
+            </div>
+          </div>
+        </AdminCard>
+
+        <AdminCard
           title="Search engine listing"
           description="What Google shows for the home page."
         >

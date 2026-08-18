@@ -26,6 +26,11 @@ model Settings {
   email              String
   announcement       String?
   announcementActive Boolean  @default(false)
+  /// Master switch for the clinic photo gallery. Individual photos also have
+  /// their own published flag; this hides the whole section at once.
+  galleryEnabled     Boolean  @default(true)
+  galleryHeading     String   @default("Inside the clinic")
+  galleryIntro       String   @default("")
   metaTitle          String
   metaDescription    String
   updatedAt          DateTime @updatedAt

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Prose } from "@/components/site/Prose";
+import { PhotoGallery } from "@/components/site/PhotoGallery";
 import { getCredentials, getPublishedPhotos, getSettings } from "@/lib/queries";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -125,6 +126,16 @@ export default async function AboutPage() {
           </div>
         </aside>
       </div>
+
+      {settings.galleryEnabled && (
+        <div className="container-page pb-16">
+          <PhotoGallery
+            photos={photos}
+            heading={settings.galleryHeading}
+            intro={settings.galleryIntro}
+          />
+        </div>
+      )}
     </>
   );
 }

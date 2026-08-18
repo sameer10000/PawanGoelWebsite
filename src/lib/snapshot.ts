@@ -50,7 +50,15 @@ export type FaqWithCondition = Faq & { condition: Condition | null };
 export const snapshotGeneratedAt = raw.generatedAt;
 
 export function snapshotSettings(): Settings {
-  return { ...raw.settings, updatedAt: new Date(raw.settings.updatedAt) };
+  return {
+    ...raw.settings,
+    updatedAt: new Date(raw.settings.updatedAt),
+    // Defaults so a snapshot generated before these fields existed still
+    // produces a valid Settings object rather than undefined holes.
+    galleryEnabled: raw.settings.galleryEnabled ?? true,
+    galleryHeading: raw.settings.galleryHeading || "Inside the clinic",
+    galleryIntro: raw.settings.galleryIntro ?? "",
+  };
 }
 
 export function snapshotLocations(): LocationWithSlots[] {

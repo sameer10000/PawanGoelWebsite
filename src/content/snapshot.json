@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T08:59:19.074Z",
+  "generatedAt": "2026-08-18T09:42:15.536Z",
   "settings": {
     "id": 1,
     "doctorName": "Dr. Pawan Goel",
@@ -15,9 +15,12 @@
     "email": "",
     "announcement": null,
     "announcementActive": false,
+    "galleryEnabled": true,
+    "galleryHeading": "Inside the clinic",
+    "galleryIntro": "",
     "metaTitle": "Dr. Pawan Goel — Endocrinologist & Diabetes Specialist in Shalimar Bagh, Delhi",
     "metaDescription": "Consultant Endocrinologist in Delhi (MD AIIMS, DM SGPGI) treating diabetes, thyroid disorders, PCOS, obesity and hormonal problems. Consults in Shalimar Bagh, Punjabi Bagh and Bahadurgarh.",
-    "updatedAt": "2026-08-18T08:29:52.295Z"
+    "updatedAt": "2026-08-18T09:17:55.272Z"
   },
   "locations": [
     {
@@ -532,6 +535,19 @@
     }
   ],
   "testimonials": [],
-  "photos": [],
+  "photos": [
+    {
+      "id": 1,
+      "key": "b3bf18a96c2e3c65a966efb6e7b7c3cb",
+      "url": "/media/b3bf18a96c2e3c65a966efb6e7b7c3cb",
+      "contentType": "image/jpeg",
+      "alt": "bjbn",
+      "caption": "nn",
+      "category": "clinic",
+      "sortOrder": 1,
+      "published": true,
+      "createdAt": "2026-08-18T09:34:20.997Z"
+    }
+  ],
   "closures": []
 }
