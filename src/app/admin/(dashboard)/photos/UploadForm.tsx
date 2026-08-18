@@ -1,20 +1,112 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { uploadPhoto, type PhotoState } from "./actions";
 
-function SubmitButton() {
+/** Longest edge kept. 2400px is plenty for a full-width hero on a retina screen. */
+const MAX_DIMENSION = 2400;
+const JPEG_QUALITY = 0.85;
+/** Below this, leave the file alone — re-encoding would only lose quality. */
+const PASSTHROUGH_BYTES = 1_200_000;
+
+/**
+ * Downscale in the browser before submitting.
+ *
+ * Server Actions cap request bodies (1 MB by default, and Vercel refuses
+ * anything over ~4.5 MB at the edge regardless of config), while a photo
+ * straight off a phone is routinely 3–8 MB. Shrinking here means uploads
+ * land well under any limit, the database stays small, and pages load faster.
+ */
+async function optimiseImage(file: File): Promise<File> {
+  if (file.size <= PASSTHROUGH_BYTES) return file;
+
+  try {
+    const bitmap = await createImageBitmap(file);
+    const scale = Math.min(
+      1,
+      MAX_DIMENSION / Math.max(bitmap.width, bitmap.height),
+    );
+    const width = Math.round(bitmap.width * scale);
+    const height = Math.round(bitmap.height * scale);
+
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+
+    const context = canvas.getContext("2d");
+    if (!context) return file;
+    context.drawImage(bitmap, 0, 0, width, height);
+    bitmap.close?.();
+
+    const blob = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob(resolve, "image/jpeg", JPEG_QUALITY),
+    );
+
+    // If re-encoding didn't actually help, keep the original.
+    if (!blob || blob.size >= file.size) return file;
+
+    return new File([blob], `${file.name.replace(/\.[^.]+$/, "")}.jpg`, {
+      type: "image/jpeg",
+    });
+  } catch {
+    // Any decoding failure: send the original and let the server decide.
+    return file;
+  }
+}
+
+function formatSize(bytes: number) {
+  return bytes >= 1_000_000
+    ? `${(bytes / 1_048_576).toFixed(1)} MB`
+    : `${Math.round(bytes / 1024)} KB`;
+}
+
+function SubmitButton({ busy }: { busy: boolean }) {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" disabled={pending} className="btn-primary">
-      {pending ? "Uploading…" : "Upload image"}
+    <button
+      type="submit"
+      disabled={pending || busy}
+      className="btn-primary"
+    >
+      {pending ? "Uploading…" : busy ? "Preparing…" : "Upload image"}
     </button>
   );
 }
 
 export function UploadForm() {
   const [state, formAction] = useActionState<PhotoState, FormData>(uploadPhoto, {});
+  const [note, setNote] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const input = event.currentTarget;
+    const original = input.files?.[0];
+    if (!original) {
+      setNote(null);
+      return;
+    }
+
+    setBusy(true);
+    setNote("Preparing image…");
+
+    const optimised = await optimiseImage(original);
+
+    if (optimised !== original) {
+      // Swap the chosen file for the smaller one so the normal form submit
+      // sends it — this keeps useActionState and useFormStatus working.
+      const transfer = new DataTransfer();
+      transfer.items.add(optimised);
+      input.files = transfer.files;
+      setNote(
+        `Resized from ${formatSize(original.size)} to ${formatSize(optimised.size)} before upload.`,
+      );
+    } else {
+      setNote(`${formatSize(original.size)} — no resizing needed.`);
+    }
+
+    setBusy(false);
+  }
 
   return (
     <form action={formAction} className="space-y-5">
@@ -42,9 +134,14 @@ export function UploadForm() {
           type="file"
           accept="image/jpeg,image/png,image/webp,image/avif"
           required
+          onChange={handleFileChange}
           className="input file:mr-3 file:rounded-md file:border-0 file:bg-brand-600 file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-white"
         />
-        <p className="hint">JPG, PNG, WebP or AVIF. Maximum 6 MB.</p>
+        <p className="hint">
+          JPG, PNG, WebP or AVIF. Large photos are resized automatically before
+          uploading, so a picture straight from a phone is fine.
+        </p>
+        {note && <p className="mt-1.5 text-xs font-medium text-brand-700">{note}</p>}
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
@@ -85,7 +182,7 @@ export function UploadForm() {
         <input id="caption" name="caption" className="input" />
       </div>
 
-      <SubmitButton />
+      <SubmitButton busy={busy} />
     </form>
   );
 }
