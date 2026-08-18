@@ -1,4 +1,5 @@
 import "dotenv/config";
+import { randomBytes } from "node:crypto";
 import { createPrismaClient } from "../src/lib/db";
 import { hashPassword } from "../src/lib/password";
 
@@ -682,7 +683,12 @@ const FAQS = [
 
 async function ensureAdminUser() {
   const email = process.env.ADMIN_EMAIL || "admin@drpawangoel.in";
-  const password = process.env.ADMIN_PASSWORD || "ChangeMe@2026";
+
+  // No hardcoded fallback: this repository is public, so a default password in
+  // source would be a published credential for any deployment seeded without
+  // setting ADMIN_PASSWORD. Generate one instead and print it once.
+  const provided = process.env.ADMIN_PASSWORD;
+  const password = provided || randomBytes(12).toString("base64url");
 
   if (await prisma.adminUser.findUnique({ where: { email } })) return;
 
@@ -695,7 +701,11 @@ async function ensureAdminUser() {
   });
 
   console.log(`\n  Admin login created:\n    ${email}\n    ${password}`);
-  console.log("  Change this password after first login.\n");
+  console.log(
+    provided
+      ? "  Change this password after first login.\n"
+      : "  Randomly generated — copy it now, it is not stored anywhere else.\n",
+  );
 }
 
 async function main() {
