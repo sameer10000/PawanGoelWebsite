@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { LocationLogo } from "@/components/site/LocationLogo";
 import { getLocationBySlug, getSettings } from "@/lib/queries";
 import { DAY_LABELS, formatRange, istNow, toMinutes } from "@/lib/schedule";
 import {
@@ -8,7 +9,6 @@ import {
   fullAddress,
   mapsSearchHref,
   telHref,
-  whatsappHref,
 } from "@/lib/format";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -59,9 +59,12 @@ export default async function LocationPage({ params }: Params) {
             <span aria-hidden> / </span>
             <span className="text-ink-700">{location.name}</span>
           </nav>
-          <h1 className="mt-4 max-w-3xl font-serif text-4xl font-semibold sm:text-5xl">
-            {settings.doctorName} at {location.name}
-          </h1>
+          <div className="mt-4 flex max-w-4xl flex-col gap-4 sm:flex-row sm:items-center">
+            <LocationLogo slug={location.slug} name={location.name} />
+            <h1 className="font-serif text-4xl font-semibold sm:text-5xl">
+              {settings.doctorName} at {location.name}
+            </h1>
+          </div>
           <p className="mt-4 text-lg text-ink-600">{address}</p>
         </div>
       </section>
@@ -166,7 +169,11 @@ export default async function LocationPage({ params }: Params) {
               </p>
             )}
 
-            {location.bookingUrl ? (
+            {location.isPrimary ? (
+              <Link href={`/book?location=${location.slug}`} className="btn-primary mt-4 w-full">
+                Request an appointment
+              </Link>
+            ) : location.bookingUrl ? (
               <>
                 <p className="mt-2 text-sm leading-relaxed text-ink-600">
                   Appointments at this location are managed by the hospital.
@@ -181,9 +188,10 @@ export default async function LocationPage({ params }: Params) {
                 </a>
               </>
             ) : (
-              <Link href={`/book?location=${location.slug}`} className="btn-primary mt-4 w-full">
-                Request an appointment
-              </Link>
+              <p className="mt-2 text-sm leading-relaxed text-ink-600">
+                Appointments at this location are managed by the hospital.
+                Please use the hospital phone or reception desk for booking.
+              </p>
             )}
 
             {location.phone && (
@@ -195,17 +203,18 @@ export default async function LocationPage({ params }: Params) {
               </a>
             )}
 
-            <a
-              href={whatsappHref(
-                settings.whatsappNumber,
-                `Hello, I would like to book an appointment at ${location.name}, ${location.area}.`,
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp mt-2.5 w-full"
-            >
-              WhatsApp the clinic
-            </a>
+            {location.isPrimary && (
+              <a
+                href={`https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent(
+                  `Hello, I would like to book an appointment at ${location.name}, ${location.area}.`,
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp mt-2.5 w-full"
+              >
+                WhatsApp the clinic
+              </a>
+            )}
           </div>
 
           <div className="card bg-ink-50">

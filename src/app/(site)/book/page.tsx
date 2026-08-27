@@ -25,6 +25,8 @@ export default async function BookPage({
     getSettings(),
     getPublishedConditions(),
   ]);
+  const selectedLocation = locations.find((l) => l.slug === location);
+  const showingHospitalBooking = Boolean(selectedLocation && !selectedLocation.isPrimary);
 
   return (
     <>
@@ -35,8 +37,8 @@ export default async function BookPage({
             Book an appointment
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-ink-600">
-            Fill in the form and the clinic will call to confirm a slot. For an
-            urgent appointment, calling or messaging on WhatsApp is faster.
+            Clinic appointments can be requested here. Hospital appointments are
+            handled directly by the respective hospital.
           </p>
         </div>
       </section>
@@ -50,6 +52,7 @@ export default async function BookPage({
               name: l.name,
               area: l.area,
               bookingUrl: l.bookingUrl,
+              isPrimary: l.isPrimary,
             }))}
             defaultLocationSlug={location}
             concerns={conditions.map((c) => c.name)}
@@ -60,26 +63,28 @@ export default async function BookPage({
         </div>
 
         <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-          <div className="card">
-            <h2 className="font-serif text-lg font-semibold">Faster options</h2>
-            <a
-              href={telHref(settings.primaryPhone)}
-              className="btn-secondary mt-4 w-full"
-            >
-              Call {formatPhone(settings.primaryPhone)}
-            </a>
-            <a
-              href={whatsappHref(
-                settings.whatsappNumber,
-                `Hello, I would like to book an appointment with ${settings.doctorName}.`,
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp mt-2.5 w-full"
-            >
-              WhatsApp the clinic
-            </a>
-          </div>
+          {!showingHospitalBooking && (
+            <div className="card">
+              <h2 className="font-serif text-lg font-semibold">Faster options</h2>
+              <a
+                href={telHref(settings.primaryPhone)}
+                className="btn-secondary mt-4 w-full"
+              >
+                Call {formatPhone(settings.primaryPhone)}
+              </a>
+              <a
+                href={whatsappHref(
+                  settings.whatsappNumber,
+                  `Hello, I would like to book an appointment with ${settings.doctorName}.`,
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp mt-2.5 w-full"
+              >
+                WhatsApp the clinic
+              </a>
+            </div>
+          )}
 
           <WhereToday />
 

@@ -125,7 +125,7 @@ const LOCATIONS: SeedLocation[] = [
     slug: "shalimar-bagh-clinic",
     name: "Diabetes & Endocrine Clinic",
     kind: "clinic",
-    addressLine: "AE-188, Shalimar Bagh",
+    addressLine: "AE 164, Shalimar Bagh",
     area: "Shalimar Bagh",
     city: "Delhi",
     state: "Delhi",
@@ -135,16 +135,23 @@ const LOCATIONS: SeedLocation[] = [
     notes:
       "Dr. Goel's own clinic. Best place for follow-up visits, CGM reviews and insulin pump adjustment.",
     bookingUrl: null,
-    mapUrl: "https://maps.app.goo.gl/vDhHecrmxcS5WNwVA",
+    mapUrl: null,
     isPrimary: true,
     published: true,
     sortOrder: 1,
     // Monday to Saturday. Closed on Sundays.
-    slots: [1, 2, 3, 4, 5, 6].map((d) => ({
-      dayOfWeek: d,
-      startTime: "17:00",
-      endTime: "21:00",
-    })),
+    slots: [1, 2, 3, 4, 5, 6].flatMap((d) => [
+      {
+        dayOfWeek: d,
+        startTime: "08:00",
+        endTime: "09:30",
+      },
+      {
+        dayOfWeek: d,
+        startTime: "18:00",
+        endTime: "21:00",
+      },
+    ]),
   },
   {
     slug: "max-shalimar-bagh",
@@ -223,7 +230,7 @@ const LOCATIONS: SeedLocation[] = [
     phone: null,
     fee: null,
     notes: "Timings not confirmed — hidden until verified.",
-    bookingUrl: null,
+    bookingUrl: "https://www.pentamedhospital.com/doctor-profile/Pawan-Goel",
     mapUrl: null,
     isPrimary: false,
     published: false,
@@ -242,7 +249,7 @@ const LOCATIONS: SeedLocation[] = [
     phone: null,
     fee: null,
     notes: "Timings not confirmed — hidden until verified.",
-    bookingUrl: null,
+    bookingUrl: "https://www.sarojhospital.com/contact-us",
     mapUrl: null,
     isPrimary: false,
     published: false,

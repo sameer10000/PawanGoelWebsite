@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T09:42:15.536Z",
+  "generatedAt": "2026-08-21T12:48:26.324Z",
   "settings": {
     "id": 1,
     "doctorName": "Dr. Pawan Goel",
@@ -28,12 +28,12 @@
       "slug": "shalimar-bagh-clinic",
       "name": "Diabetes & Endocrine Clinic",
       "kind": "clinic",
-      "addressLine": "AE-188, Shalimar Bagh",
+      "addressLine": "AE 164, Shalimar Bagh",
       "area": "Shalimar Bagh",
       "city": "Delhi",
       "state": "Delhi",
       "pincode": "110088",
-      "mapUrl": "https://maps.app.goo.gl/vDhHecrmxcS5WNwVA",
+      "mapUrl": null,
       "mapEmbedUrl": null,
       "phone": "+919999078196",
       "fee": null,
@@ -47,42 +47,84 @@
           "id": 1,
           "locationId": 1,
           "dayOfWeek": 1,
-          "startTime": "17:00",
-          "endTime": "21:00"
+          "startTime": "08:00",
+          "endTime": "09:30"
         },
         {
           "id": 2,
           "locationId": 1,
           "dayOfWeek": 2,
-          "startTime": "17:00",
-          "endTime": "21:00"
+          "startTime": "08:00",
+          "endTime": "09:30"
         },
         {
           "id": 3,
           "locationId": 1,
           "dayOfWeek": 3,
-          "startTime": "17:00",
-          "endTime": "21:00"
+          "startTime": "08:00",
+          "endTime": "09:30"
         },
         {
           "id": 4,
           "locationId": 1,
           "dayOfWeek": 4,
-          "startTime": "17:00",
-          "endTime": "21:00"
+          "startTime": "08:00",
+          "endTime": "09:30"
         },
         {
           "id": 5,
           "locationId": 1,
           "dayOfWeek": 5,
-          "startTime": "17:00",
-          "endTime": "21:00"
+          "startTime": "08:00",
+          "endTime": "09:30"
         },
         {
           "id": 6,
           "locationId": 1,
           "dayOfWeek": 6,
-          "startTime": "17:00",
+          "startTime": "08:00",
+          "endTime": "09:30"
+        },
+        {
+          "id": 19,
+          "locationId": 1,
+          "dayOfWeek": 1,
+          "startTime": "18:00",
+          "endTime": "21:00"
+        },
+        {
+          "id": 20,
+          "locationId": 1,
+          "dayOfWeek": 2,
+          "startTime": "18:00",
+          "endTime": "21:00"
+        },
+        {
+          "id": 21,
+          "locationId": 1,
+          "dayOfWeek": 3,
+          "startTime": "18:00",
+          "endTime": "21:00"
+        },
+        {
+          "id": 22,
+          "locationId": 1,
+          "dayOfWeek": 4,
+          "startTime": "18:00",
+          "endTime": "21:00"
+        },
+        {
+          "id": 23,
+          "locationId": 1,
+          "dayOfWeek": 5,
+          "startTime": "18:00",
+          "endTime": "21:00"
+        },
+        {
+          "id": 24,
+          "locationId": 1,
+          "dayOfWeek": 6,
+          "startTime": "18:00",
           "endTime": "21:00"
         }
       ]
@@ -195,31 +237,38 @@
       ]
     },
     {
-      "id": 4,
-      "slug": "jj-institute-bahadurgarh",
-      "name": "JJ Institute of Medical Sciences",
+      "id": 6,
+      "slug": "saroj-hospital-rohini",
+      "name": "Saroj Super Speciality Hospital",
       "kind": "hospital",
-      "addressLine": "Main Delhi–Rohtak Road, MIE Bahadurgarh",
-      "area": "Bahadurgarh",
-      "city": "Bahadurgarh",
-      "state": "Haryana",
-      "pincode": "124507",
-      "mapUrl": null,
-      "mapEmbedUrl": null,
-      "phone": "+917056100100",
+      "addressLine": "Sector 19, Rohini",
+      "area": "Rohini",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110085",
+      "mapUrl": "https://www.google.com/maps?sca_esv=a1a5ed640a4c7c37&biw=1912&bih=1060&sxsrf=APpeQnudj7kfG0NpU3uZgwUG_sJJTWFSRQ:1787313345948&uact=5&gs_lp=Egxnd3Mtd2l6LXNlcnAiH3Nhcm9qIGhvc3BpdGFsIGdvb2dsZSBtYXBzIGxpbmtIuhxQtQZY0RpwAXgAkAEAmAH8AaABpxmqAQYwLjEyLja4AQPIAQD4AQGYAgigAr0LwgIKEAAYgAQYQxiKBcICExAuGIAEGEMYxwEYigUYjgUYrwHCAgUQABiABMICDhAuGIAEGMcBGI4FGK8BwgIGEAAYFhgewgILEAAYgAQYhgMYigXCAgQQIRgVmAMAiAYBkgcFMC41LjOgB9MisgcFMC41LjO4B70LwgcFMC41LjPIBxaACAA&um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KQsMnXvfAw05MdVex6QZ9YvU&daddr=Sector+-14+Extension,+near+Madhuban+Chowk,+Institutional+Area,+Rohini,+New+Delhi,+Delhi+110085",
+      "mapEmbedUrl": "https://maps.app.goo.gl/YqvQHtt4kj4DUdUDA",
+      "phone": null,
       "fee": null,
       "notes": null,
-      "bookingUrl": "https://www.jjmedicalinstitute.com/profile/dr-pawan",
+      "bookingUrl": "https://www.sarojhospital.com/contact-us",
       "isPrimary": false,
       "published": true,
-      "sortOrder": 4,
+      "sortOrder": 6,
       "slots": [
         {
-          "id": 16,
-          "locationId": 4,
-          "dayOfWeek": 6,
-          "startTime": "16:00",
-          "endTime": "18:00"
+          "id": 17,
+          "locationId": 6,
+          "dayOfWeek": 1,
+          "startTime": "13:00",
+          "endTime": "15:00"
+        },
+        {
+          "id": 18,
+          "locationId": 6,
+          "dayOfWeek": 5,
+          "startTime": "13:00",
+          "endTime": "15:00"
         }
       ]
     }
@@ -379,9 +428,9 @@
     {
       "id": 2,
       "slug": "insulin-pump-therapy",
-      "name": "Insulin Pump Therapy",
-      "summary": "Assessment, initiation and ongoing optimisation of insulin pump treatment.",
-      "body": "An insulin pump delivers a continuous background insulin infusion with mealtime boluses, and can improve control for people who struggle with multiple daily injections or frequent hypoglycaemia.\n\nSupport covers deciding whether a pump is the right choice, setting basal rates and ratios, transitioning safely from injections, and reviewing settings as needs change. Pump therapy demands engagement from the patient, and the decision is made together rather than assumed.",
+      "name": "Obesity",
+      "summary": "Obesity management and maintenance",
+      "body": "Obesity management is a structured, personalised approach designed to support healthy weight loss and long-term maintenance rather than short-term dieting.\r\n\r\nIt is particularly useful when weight has been difficult to manage despite lifestyle changes, when obesity is affecting blood sugar, blood pressure or cholesterol, or when weight regain has become a concern.\r\n\r\nDr. Goel reviews your medical history, eating patterns, activity levels and treatment options with you, then develops practical, sustainable changes to nutrition, physical activity and medication where appropriate.\r\n",
       "sortOrder": 2,
       "published": true
     },
@@ -528,7 +577,7 @@
     {
       "id": 7,
       "question": "Can I consult online?",
-      "answer": "Video consultation is suitable for follow-up, report review and dose adjustment. A first consultation, and any situation needing physical examination, is better done in person. Online consultations follow the Telemedicine Practice Guidelines, 2020.",
+      "answer": "Video consultation is suitable for follow-up, report review and dose adjustment. A first consultation, and any situation needing physical examination, is better done in person.",
       "conditionId": null,
       "sortOrder": 7,
       "published": true
@@ -537,16 +586,16 @@
   "testimonials": [],
   "photos": [
     {
-      "id": 1,
-      "key": "b3bf18a96c2e3c65a966efb6e7b7c3cb",
-      "url": "/media/b3bf18a96c2e3c65a966efb6e7b7c3cb",
-      "contentType": "image/jpeg",
-      "alt": "bjbn",
-      "caption": "nn",
-      "category": "clinic",
-      "sortOrder": 1,
+      "id": 5,
+      "key": "04fe6462c9f3ee4cecf8799bf4c7f76d",
+      "url": "/media/04fe6462c9f3ee4cecf8799bf4c7f76d",
+      "contentType": "image/webp",
+      "alt": "Dr Pawan Goel",
+      "caption": "Consultant Endocrinologist in North Delhi",
+      "category": "portrait",
+      "sortOrder": 2,
       "published": true,
-      "createdAt": "2026-08-18T09:34:20.997Z"
+      "createdAt": "2026-08-21T11:42:56.547Z"
     }
   ],
   "closures": []

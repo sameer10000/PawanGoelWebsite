@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState } from "react";
+import Link from "next/link";
+import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { submitBooking, type BookingState } from "@/app/(site)/book/actions";
 import { formatPhone, telHref, whatsappHref } from "@/lib/format";
@@ -11,6 +12,7 @@ type LocationOption = {
   name: string;
   area: string;
   bookingUrl: string | null;
+  isPrimary: boolean;
 };
 
 const initialState: BookingState = { ok: false };
@@ -42,6 +44,13 @@ export function BookingForm({
   const [state, formAction] = useActionState(submitBooking, initialState);
 
   const defaultLocation = locations.find((l) => l.slug === defaultLocationSlug);
+  const [selectedLocationId, setSelectedLocationId] = useState(
+    defaultLocation ? String(defaultLocation.id) : "",
+  );
+  const selectedLocation = locations.find(
+    (location) => String(location.id) === selectedLocationId,
+  );
+  const hospitalManaged = Boolean(selectedLocation && !selectedLocation.isPrimary);
   const today = new Date().toISOString().slice(0, 10);
 
   if (state.ok && state.message) {
@@ -174,7 +183,8 @@ export function BookingForm({
         <select
           id="locationId"
           name="locationId"
-          defaultValue={defaultLocation ? String(defaultLocation.id) : ""}
+          value={selectedLocationId}
+          onChange={(event) => setSelectedLocationId(event.target.value)}
           className="input"
         >
           <option value="">No preference</option>
@@ -185,11 +195,42 @@ export function BookingForm({
           ))}
         </select>
         <p className="hint">
-          Hospital appointments may also need to be confirmed through the
-          hospital&rsquo;s own booking line.
+          Website appointment requests are only for Dr. Goel&rsquo;s own clinic.
+          Hospital appointments are handled by the hospital.
         </p>
       </div>
 
+      {hospitalManaged && selectedLocation && (
+        <div className="rounded-xl border border-brand-200 bg-brand-50 p-5">
+          <h2 className="font-serif text-lg font-semibold text-ink-900">
+            Book with {selectedLocation.name}
+          </h2>
+          <p className="mt-2 text-[15px] leading-relaxed text-ink-700">
+            This hospital manages its own appointment process, so this request
+            will not be sent to the clinic.
+          </p>
+          {selectedLocation.bookingUrl ? (
+            <a
+              href={selectedLocation.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary mt-4"
+            >
+              Continue to hospital booking
+            </a>
+          ) : (
+            <Link
+              href={`/locations/${selectedLocation.slug}`}
+              className="btn-secondary mt-4"
+            >
+              View hospital details
+            </Link>
+          )}
+        </div>
+      )}
+
+      {!hospitalManaged && (
+        <>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="preferredDate" className="label">
@@ -259,6 +300,8 @@ export function BookingForm({
           nearest hospital instead.
         </p>
       </div>
+        </>
+      )}
     </form>
   );
 }

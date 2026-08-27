@@ -83,7 +83,7 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-[88rem] px-5 sm:px-8 lg:px-12 xl:px-16;
   }
 
   .container-prose {
@@ -139,7 +139,8 @@
 
 /* Long-form clinical copy */
 .prose-clinical {
-  @apply text-[17px] leading-relaxed text-ink-700;
+  /* Cap the measure so wide layouts do not produce long, tiring lines. */
+  @apply max-w-[68ch] text-[17px] leading-relaxed text-ink-700;
 }
 .prose-clinical h2 {
   @apply mt-10 mb-3 text-xl;

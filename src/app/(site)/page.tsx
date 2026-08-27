@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { HeroCarousel } from "@/components/site/HeroCarousel";
 import { WhereToday } from "@/components/site/WhereToday";
 import {
   getCredentials,
@@ -37,14 +37,14 @@ export default async function HomePage() {
 
   const featured = conditions.filter((c) => c.featured).slice(0, 6);
   const degrees = credentials.filter((c) => c.kind === "degree");
-  const portrait = photos.find((p) => p.category === "portrait");
+  const portraits = photos.filter((p) => p.category === "portrait").slice(0, 3);
 
   return (
     <>
       {/* Hero */}
       <section className="border-b border-ink-200 bg-gradient-to-b from-brand-50/60 to-white">
-        <div className="container-page grid gap-12 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-20">
-          <div className="flex flex-col justify-center">
+        <div className="container-page grid gap-12 py-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-20">
+          <div className="">
             <p className="eyebrow">Endocrinology & Diabetes</p>
             <h1 className="mt-4 font-serif text-[2.1rem] leading-[1.12] font-semibold text-ink-900 sm:text-5xl">
               {settings.headline}
@@ -104,19 +104,18 @@ export default async function HomePage() {
             </dl>
           </div>
 
-          <div className="flex flex-col gap-6">
-            <div className="relative overflow-hidden rounded-2xl border border-ink-200 bg-ink-100">
-              {portrait ? (
-                <Image
-                  src={portrait.url}
-                  alt={portrait.alt || settings.doctorName}
-                  width={640}
-                  height={720}
-                  priority
-                  className="h-full w-full object-cover"
+          <div className="flex flex-col gap-6 lg:max-w-[540px] lg:justify-self-end">
+            <div>
+              {portraits.length > 0 ? (
+                <HeroCarousel
+                  photos={portraits.map((photo) => ({
+                    id: photo.id,
+                    url: photo.url,
+                    alt: photo.alt || settings.doctorName,
+                  }))}
                 />
               ) : (
-                <div className="flex aspect-[5/4] flex-col items-center justify-center gap-3 px-6 text-center">
+                <div className="mx-auto flex aspect-[3/4] w-full max-w-[420px] flex-col items-center justify-center gap-3 rounded-2xl border border-ink-200 bg-ink-100 px-6 text-center lg:max-w-[460px]">
                   <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-600 font-serif text-xl font-semibold text-white">
                     PG
                   </span>
@@ -138,17 +137,17 @@ export default async function HomePage() {
 
       {/* Training */}
       <section className="border-b border-ink-200 bg-white">
-        <div className="container-page py-10">
-          <p className="text-center text-xs font-semibold tracking-[0.14em] text-ink-400 uppercase">
+        <div className="container-page py-14 lg:py-16">
+          <p className="text-center text-sm font-semibold tracking-[0.14em] text-ink-400 uppercase">
             Training & qualifications
           </p>
-          <ul className="mt-6 grid gap-6 sm:grid-cols-3">
+          <ul className="mt-8 grid gap-8 sm:grid-cols-3">
             {degrees.map((degree) => (
               <li key={degree.id} className="text-center">
-                <p className="font-serif text-lg font-semibold text-ink-900">
+                <p className="font-serif text-2xl font-semibold text-ink-900">
                   {degree.title}
                 </p>
-                <p className="mt-1 text-sm leading-relaxed text-ink-500">
+                <p className="mt-2 text-base leading-relaxed text-ink-500">
                   {degree.institution}
                 </p>
               </li>
@@ -199,62 +198,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Approach */}
-      <section className="border-y border-ink-200 bg-ink-50">
-        <div className="container-page py-16 lg:py-20">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <p className="eyebrow">Approach</p>
-              <h2 className="mt-3 font-serif text-3xl font-semibold sm:text-4xl">
-                What to expect in a consultation
-              </h2>
-              <p className="mt-4 text-lg text-ink-600">
-                Endocrine care depends on detail — what you eat, when you take
-                your medicines, how you sleep, what your reports looked like two
-                years ago. Consultations are structured to gather that properly.
-              </p>
-            </div>
-            <ul className="space-y-6">
-              {[
-                {
-                  title: "A full history, not just today's numbers",
-                  body: "Old reports matter. Bring everything you have — patterns over time say more than any single test result.",
-                },
-                {
-                  title: "Tests ordered for a reason",
-                  body: "Investigations are chosen to answer a specific question, and each one is explained before it is ordered.",
-                },
-                {
-                  title: "A plan you can follow",
-                  body: "Dietary and lifestyle advice is built around your household and routine rather than a printed sheet.",
-                },
-                {
-                  title: "Clear follow-up",
-                  body: "You will know when to return, what to monitor at home, and which symptoms mean you should come sooner.",
-                },
-              ].map((item, index) => (
-                <li key={item.title} className="flex gap-4">
-                  <span
-                    aria-hidden
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-semibold text-white"
-                  >
-                    {index + 1}
-                  </span>
-                  <div>
-                    <h3 className="font-serif text-lg font-semibold">
-                      {item.title}
-                    </h3>
-                    <p className="mt-1.5 leading-relaxed text-ink-600">
-                      {item.body}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
       {/* Services */}
       {services.length > 0 && (
         <section className="container-page py-16 lg:py-20">
@@ -264,7 +207,7 @@ export default async function HomePage() {
               Modern diabetes care, used where it genuinely helps
             </h2>
           </div>
-          <ul className="mt-10 grid gap-5 sm:grid-cols-2">
+          <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <li key={service.id}>
                 <Link
@@ -298,7 +241,7 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <ul className="mt-10 grid gap-5 md:grid-cols-2">
+          <ul className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {locations.map((location) => (
               <li key={location.id}>
                 <Link

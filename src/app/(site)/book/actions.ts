@@ -54,13 +54,35 @@ export async function submitBooking(
   if (data.website) return { ok: true, message: "Thank you." };
 
   try {
+    const locationId =
+      data.locationId && /^\d+$/.test(data.locationId) ? Number(data.locationId) : null;
+
+    if (locationId) {
+      const location = await withTimeout(
+        prisma.location.findUnique({
+          where: { id: locationId },
+          select: { isPrimary: true, name: true, bookingUrl: true },
+        }),
+        WRITE_TIMEOUT_MS,
+      );
+
+      if (location && !location.isPrimary) {
+        return {
+          ok: false,
+          message: location.bookingUrl
+            ? `Appointments at ${location.name} are handled by the hospital. Please use the hospital booking link.`
+            : `Appointments at ${location.name} are handled by the hospital. Please contact the hospital directly.`,
+        };
+      }
+    }
+
     await withTimeout(
       prisma.appointment.create({
         data: {
           name: data.name,
           phone: data.phone,
           email: data.email || null,
-          locationId: data.locationId ? Number(data.locationId) : null,
+          locationId,
           preferredDate: data.preferredDate ? new Date(data.preferredDate) : null,
           preferredTime: data.preferredTime || null,
           concern: data.concern || null,

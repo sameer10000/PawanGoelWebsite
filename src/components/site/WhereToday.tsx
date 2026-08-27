@@ -19,6 +19,11 @@ export async function WhereToday() {
 
   const upcoming = nextAvailable(locations, now);
   const dayName = DAY_LABELS[now.dayOfWeek];
+  const bookingLocation =
+    entries.find((entry) => entry.status === "now")?.location ??
+    entries.find((entry) => entry.status === "upcoming")?.location ??
+    upcoming?.location ??
+    null;
 
   return (
     <section
@@ -46,35 +51,39 @@ export async function WhereToday() {
             <li key={`${entry.location.id}-${index}`}>
               <Link
                 href={`/locations/${entry.location.slug}`}
-                className={`flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border bg-white px-4 py-3.5 transition-colors hover:border-brand-400 ${
+                className={`block rounded-xl border bg-white px-4 py-3.5 transition-colors hover:border-brand-400 ${
                   entry.status === "now"
                     ? "border-brand-400 ring-1 ring-brand-300"
                     : "border-ink-200"
                 } ${entry.status === "finished" ? "opacity-55" : ""}`}
               >
-                <span className="min-w-0 flex-1">
-                  <span className="block font-medium text-ink-900">
-                    {entry.location.name}
+                <span className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+                  <span className="min-w-0">
+                    <span className="block break-words font-medium leading-snug text-ink-900">
+                      {entry.location.name}
+                    </span>
+                    <span className="block text-sm text-ink-500">
+                      {entry.location.area}
+                    </span>
                   </span>
-                  <span className="block text-sm text-ink-500">
-                    {entry.location.area}
+                  <span className="flex flex-wrap items-center gap-2 sm:justify-end">
+                    <span className="text-sm font-medium text-ink-700 tabular-nums">
+                      {formatRange(entry.slot.startTime, entry.slot.endTime)}
+                    </span>
+                    {entry.status === "now" && (
+                      <span className="badge bg-brand-600 text-white">
+                        <span
+                          aria-hidden
+                          className="h-1.5 w-1.5 rounded-full bg-white"
+                        />
+                        In OPD now
+                      </span>
+                    )}
+                    {entry.status === "finished" && (
+                      <span className="badge bg-ink-100 text-ink-500">Finished</span>
+                    )}
                   </span>
                 </span>
-                <span className="text-sm font-medium text-ink-700 tabular-nums">
-                  {formatRange(entry.slot.startTime, entry.slot.endTime)}
-                </span>
-                {entry.status === "now" && (
-                  <span className="badge bg-brand-600 text-white">
-                    <span
-                      aria-hidden
-                      className="h-1.5 w-1.5 rounded-full bg-white"
-                    />
-                    In OPD now
-                  </span>
-                )}
-                {entry.status === "finished" && (
-                  <span className="badge bg-ink-100 text-ink-500">Finished</span>
-                )}
               </Link>
             </li>
           ))}
@@ -96,9 +105,34 @@ export async function WhereToday() {
       )}
 
       <div className="mt-5 flex flex-wrap gap-3">
-        <Link href="/book" className="btn-primary px-4 py-2.5 text-sm">
-          Book an appointment
-        </Link>
+        {bookingLocation?.isPrimary ? (
+          <Link
+            href={`/book?location=${bookingLocation.slug}`}
+            className="btn-primary px-4 py-2.5 text-sm"
+          >
+            Book an appointment
+          </Link>
+        ) : bookingLocation?.bookingUrl ? (
+          <a
+            href={bookingLocation.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary px-4 py-2.5 text-sm"
+          >
+            Book with hospital
+          </a>
+        ) : bookingLocation ? (
+          <Link
+            href={`/locations/${bookingLocation.slug}`}
+            className="btn-primary px-4 py-2.5 text-sm"
+          >
+            Hospital details
+          </Link>
+        ) : (
+          <Link href="/book" className="btn-primary px-4 py-2.5 text-sm">
+            Book an appointment
+          </Link>
+        )}
         <Link href="/locations" className="btn-secondary px-4 py-2.5 text-sm">
           All timings
         </Link>
