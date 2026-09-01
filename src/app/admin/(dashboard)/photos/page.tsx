@@ -10,6 +10,7 @@ const CATEGORIES = [
   { value: "clinic", label: "Clinic" },
   { value: "equipment", label: "Equipment" },
   { value: "team", label: "Team" },
+  { value: "event", label: "Event / conference" },
 ];
 
 export default async function AdminPhotosPage() {
@@ -19,7 +20,7 @@ export default async function AdminPhotosPage() {
     <>
       <PageHeader
         title="Photos"
-        description="Upload and remove images used across the website. “Portrait” appears on the home and About pages; “clinic”, “equipment” and “team” appear in the About page gallery, which can be switched off under Site settings. A real portrait photograph is the single strongest trust signal on the home page — it is worth paying a photographer for."
+        description="Upload and remove images used across the website. “Portrait” appears on the home and About pages; “clinic”, “equipment”, “team” and “event” appear in the About page gallery and on the dedicated Gallery page, which can be switched off under Site settings. A real portrait photograph is the single strongest trust signal on the home page — it is worth paying a photographer for."
       />
 
       <AdminCard title="Upload an image">

@@ -60,6 +60,7 @@ export default async function SiteLayout({
         doctorName={settings.doctorName}
         qualifications={settings.qualifications}
         phone={settings.primaryPhone}
+        showGallery={settings.galleryEnabled}
       />
 
       <main id="main" className="pb-24 sm:pb-0">

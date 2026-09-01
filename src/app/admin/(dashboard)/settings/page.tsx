@@ -213,7 +213,7 @@ export default async function AdminSettingsPage() {
 
         <AdminCard
           title="Clinic photo gallery"
-          description="Shows clinic, equipment and team photos on the About page. Portraits are excluded — they appear on the home and About pages already."
+          description="Shows clinic, equipment and team photos on the About page and on their own Gallery page. Portraits are excluded — they appear on the home and About pages already."
         >
           <div className="space-y-4">
             <label className="flex items-center gap-2.5 text-sm text-ink-800">
@@ -226,7 +226,8 @@ export default async function AdminSettingsPage() {
               Show the gallery on the website
             </label>
             <p className="hint">
-              Unticking this hides the whole section at once, without changing
+              Unticking this hides the section on the About page and removes
+              &ldquo;Gallery&rdquo; from the site menu, without changing
               individual photos. The gallery is also hidden automatically when
               there are no clinic photos to show.
             </p>

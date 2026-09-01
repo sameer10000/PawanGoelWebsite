@@ -10,13 +10,23 @@ type Props = {
   doctorName: string;
   qualifications: string;
   phone: string;
+  showGallery: boolean;
 };
 
-export function SiteHeader({ doctorName, qualifications, phone }: Props) {
+export function SiteHeader({
+  doctorName,
+  qualifications,
+  phone,
+  showGallery,
+}: Props) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => setOpen(false), [pathname]);
+
+  const links = showGallery
+    ? NAV_LINKS
+    : NAV_LINKS.filter((link) => link.href !== "/gallery");
 
   return (
     <header className="sticky top-0 z-40 border-b border-ink-200 bg-white/95 backdrop-blur">
@@ -39,7 +49,7 @@ export function SiteHeader({ doctorName, qualifications, phone }: Props) {
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          {NAV_LINKS.map((link) => {
+          {links.map((link) => {
             const active =
               pathname === link.href || pathname.startsWith(`${link.href}/`);
             return (
@@ -100,7 +110,7 @@ export function SiteHeader({ doctorName, qualifications, phone }: Props) {
       {open && (
         <nav id="mobile-nav" className="border-t border-ink-200 bg-white lg:hidden">
           <div className="container-page py-3">
-            {NAV_LINKS.map((link) => (
+            {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}

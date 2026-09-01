@@ -6,6 +6,7 @@ type LocationLogoProps = {
 };
 
 const LOGO_ASSETS: Record<string, string> = {
+  "shalimar-bagh-clinic": "/logos/shalimar-bagh-clinic.jpeg",
   "max-shalimar-bagh": "/logos/max-healthcare.svg",
   "maharaja-agrasen-punjabi-bagh": "/logos/maharaja-agrasen.png",
   "jj-institute-bahadurgarh": "/logos/jj-institute.png",

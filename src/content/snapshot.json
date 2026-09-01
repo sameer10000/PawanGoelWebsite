@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T12:48:26.324Z",
+  "generatedAt": "2026-09-01T08:28:28.206Z",
   "settings": {
     "id": 1,
     "doctorName": "Dr. Pawan Goel",
@@ -28,12 +28,12 @@
       "slug": "shalimar-bagh-clinic",
       "name": "Diabetes & Endocrine Clinic",
       "kind": "clinic",
-      "addressLine": "AE 164, Shalimar Bagh",
+      "addressLine": "AE-164, Shalimar Bagh",
       "area": "Shalimar Bagh",
       "city": "Delhi",
       "state": "Delhi",
       "pincode": "110088",
-      "mapUrl": null,
+      "mapUrl": "https://maps.app.goo.gl/vDhHecrmxcS5WNwVA",
       "mapEmbedUrl": null,
       "phone": "+919999078196",
       "fee": null,
@@ -44,9 +44,23 @@
       "sortOrder": 1,
       "slots": [
         {
+          "id": 25,
+          "locationId": 1,
+          "dayOfWeek": 1,
+          "startTime": "08:00",
+          "endTime": "09:30"
+        },
+        {
           "id": 1,
           "locationId": 1,
           "dayOfWeek": 1,
+          "startTime": "17:00",
+          "endTime": "21:00"
+        },
+        {
+          "id": 26,
+          "locationId": 1,
+          "dayOfWeek": 2,
           "startTime": "08:00",
           "endTime": "09:30"
         },
@@ -54,6 +68,13 @@
           "id": 2,
           "locationId": 1,
           "dayOfWeek": 2,
+          "startTime": "17:00",
+          "endTime": "21:00"
+        },
+        {
+          "id": 27,
+          "locationId": 1,
+          "dayOfWeek": 3,
           "startTime": "08:00",
           "endTime": "09:30"
         },
@@ -61,6 +82,13 @@
           "id": 3,
           "locationId": 1,
           "dayOfWeek": 3,
+          "startTime": "17:00",
+          "endTime": "21:00"
+        },
+        {
+          "id": 28,
+          "locationId": 1,
+          "dayOfWeek": 4,
           "startTime": "08:00",
           "endTime": "09:30"
         },
@@ -68,6 +96,13 @@
           "id": 4,
           "locationId": 1,
           "dayOfWeek": 4,
+          "startTime": "17:00",
+          "endTime": "21:00"
+        },
+        {
+          "id": 29,
+          "locationId": 1,
+          "dayOfWeek": 5,
           "startTime": "08:00",
           "endTime": "09:30"
         },
@@ -75,6 +110,13 @@
           "id": 5,
           "locationId": 1,
           "dayOfWeek": 5,
+          "startTime": "17:00",
+          "endTime": "21:00"
+        },
+        {
+          "id": 30,
+          "locationId": 1,
+          "dayOfWeek": 6,
           "startTime": "08:00",
           "endTime": "09:30"
         },
@@ -82,49 +124,7 @@
           "id": 6,
           "locationId": 1,
           "dayOfWeek": 6,
-          "startTime": "08:00",
-          "endTime": "09:30"
-        },
-        {
-          "id": 19,
-          "locationId": 1,
-          "dayOfWeek": 1,
-          "startTime": "18:00",
-          "endTime": "21:00"
-        },
-        {
-          "id": 20,
-          "locationId": 1,
-          "dayOfWeek": 2,
-          "startTime": "18:00",
-          "endTime": "21:00"
-        },
-        {
-          "id": 21,
-          "locationId": 1,
-          "dayOfWeek": 3,
-          "startTime": "18:00",
-          "endTime": "21:00"
-        },
-        {
-          "id": 22,
-          "locationId": 1,
-          "dayOfWeek": 4,
-          "startTime": "18:00",
-          "endTime": "21:00"
-        },
-        {
-          "id": 23,
-          "locationId": 1,
-          "dayOfWeek": 5,
-          "startTime": "18:00",
-          "endTime": "21:00"
-        },
-        {
-          "id": 24,
-          "locationId": 1,
-          "dayOfWeek": 6,
-          "startTime": "18:00",
+          "startTime": "17:00",
           "endTime": "21:00"
         }
       ]
@@ -251,7 +251,7 @@
       "phone": null,
       "fee": null,
       "notes": null,
-      "bookingUrl": "https://www.sarojhospital.com/contact-us",
+      "bookingUrl": null,
       "isPrimary": false,
       "published": true,
       "sortOrder": 6,
@@ -596,6 +596,366 @@
       "sortOrder": 2,
       "published": true,
       "createdAt": "2026-08-21T11:42:56.547Z"
+    },
+    {
+      "id": 6,
+      "key": "555fc86c9ca7b0fbc97c2fc3892be499",
+      "url": "/media/555fc86c9ca7b0fbc97c2fc3892be499",
+      "contentType": "image/png",
+      "alt": "Dr pawan goel",
+      "caption": null,
+      "category": "portrait",
+      "sortOrder": 2,
+      "published": true,
+      "createdAt": "2026-08-27T08:15:24.189Z"
+    },
+    {
+      "id": 8,
+      "key": "62d81bd3af2ad061aeb5d284ffd5dddb",
+      "url": "/media/62d81bd3af2ad061aeb5d284ffd5dddb",
+      "contentType": "image/jpeg",
+      "alt": "Dr pawan goel",
+      "caption": null,
+      "category": "portrait",
+      "sortOrder": 3,
+      "published": true,
+      "createdAt": "2026-08-27T08:17:50.919Z"
+    },
+    {
+      "id": 9,
+      "key": "5383b4169f66c1ef05bc5cf85b3745f9",
+      "url": "/media/5383b4169f66c1ef05bc5cf85b3745f9",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel in his white coat and stethoscope",
+      "caption": null,
+      "category": "portrait",
+      "sortOrder": 4,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:12.832Z"
+    },
+    {
+      "id": 10,
+      "key": "52adb4f9817b7dd09c608b5604d42ed8",
+      "url": "/media/52adb4f9817b7dd09c608b5604d42ed8",
+      "contentType": "image/webp",
+      "alt": "Framed medical degrees and graduation photographs on the clinic wall",
+      "caption": null,
+      "category": "clinic",
+      "sortOrder": 5,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:15.392Z"
+    },
+    {
+      "id": 11,
+      "key": "773ee4bb434e680adaf63f25300e71dc",
+      "url": "/media/773ee4bb434e680adaf63f25300e71dc",
+      "contentType": "image/webp",
+      "alt": "Waiting area and reception at the Shalimar Bagh clinic",
+      "caption": null,
+      "category": "clinic",
+      "sortOrder": 6,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:17.849Z"
+    },
+    {
+      "id": 12,
+      "key": "88164a267d562ecc768dfca6c57d792d",
+      "url": "/media/88164a267d562ecc768dfca6c57d792d",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel's MBBS, MD and DM degree certificates displayed in the clinic",
+      "caption": null,
+      "category": "clinic",
+      "sortOrder": 7,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:19.802Z"
+    },
+    {
+      "id": 13,
+      "key": "d561dd6fea7caa9d4a1f3844aba5714a",
+      "url": "/media/d561dd6fea7caa9d4a1f3844aba5714a",
+      "contentType": "image/webp",
+      "alt": "Corridor leading to Dr. Pawan Goel's consulting room",
+      "caption": null,
+      "category": "clinic",
+      "sortOrder": 8,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:21.862Z"
+    },
+    {
+      "id": 14,
+      "key": "ce28fe54a06c39a6e579935e5f8228e6",
+      "url": "/media/ce28fe54a06c39a6e579935e5f8228e6",
+      "contentType": "image/webp",
+      "alt": "Entrance and signage of the Shalimar Bagh clinic",
+      "caption": null,
+      "category": "clinic",
+      "sortOrder": 9,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:23.799Z"
+    },
+    {
+      "id": 15,
+      "key": "40b2b6229842a163aafaeca6a72d1497",
+      "url": "/media/40b2b6229842a163aafaeca6a72d1497",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel's consulting room with his certificates on the wall",
+      "caption": null,
+      "category": "clinic",
+      "sortOrder": 10,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:26.281Z"
+    },
+    {
+      "id": 16,
+      "key": "9522383200705836831e41c32b398983",
+      "url": "/media/9522383200705836831e41c32b398983",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel presenting at a medical conference",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 11,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:27.681Z"
+    },
+    {
+      "id": 17,
+      "key": "69162da5a8bdd773e93c8c991089f03e",
+      "url": "/media/69162da5a8bdd773e93c8c991089f03e",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel receiving a hospital recognition award with colleagues",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 12,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:29.069Z"
+    },
+    {
+      "id": 18,
+      "key": "3c82b9f6efcaeff6b801da31ca785ea3",
+      "url": "/media/3c82b9f6efcaeff6b801da31ca785ea3",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel presenting on the role of statins at a medical conference",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 13,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:30.741Z"
+    },
+    {
+      "id": 19,
+      "key": "08c659759d08b1ac55f14ccd5a4897b3",
+      "url": "/media/08c659759d08b1ac55f14ccd5a4897b3",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel receiving an award at a medical conference",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 14,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:32.402Z"
+    },
+    {
+      "id": 20,
+      "key": "aa7c591e35435ad0a9a552e923e34b07",
+      "url": "/media/aa7c591e35435ad0a9a552e923e34b07",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel speaking at the FACCON conference",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 15,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:34.069Z"
+    },
+    {
+      "id": 21,
+      "key": "b715c717bbb9e19a36ce0d46f6515adf",
+      "url": "/media/b715c717bbb9e19a36ce0d46f6515adf",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel presenting at the FACCON conference",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 16,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:35.457Z"
+    },
+    {
+      "id": 22,
+      "key": "ca27f482a512a69db732d753c0d38469",
+      "url": "/media/ca27f482a512a69db732d753c0d38469",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel receiving a quiz award at a pediatric endocrine conference",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 17,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:36.997Z"
+    },
+    {
+      "id": 23,
+      "key": "48d4c5bb2a509568a78016f46d39cea1",
+      "url": "/media/48d4c5bb2a509568a78016f46d39cea1",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel at the Endocrine Summit 2024, Mumbai",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 18,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:38.469Z"
+    },
+    {
+      "id": 24,
+      "key": "8780886682fa87714b16ecd8dcdcc5d9",
+      "url": "/media/8780886682fa87714b16ecd8dcdcc5d9",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel receiving a certificate at a medical conference",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 19,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:39.861Z"
+    },
+    {
+      "id": 25,
+      "key": "a17506b63b992ebb3d2169b2a9e0430b",
+      "url": "/media/a17506b63b992ebb3d2169b2a9e0430b",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel at the World Heart Day award ceremony",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 20,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:41.258Z"
+    },
+    {
+      "id": 26,
+      "key": "6858ece16c82c6831adbb7bfde35d122",
+      "url": "/media/6858ece16c82c6831adbb7bfde35d122",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel at the Endocrine Summit",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 21,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:42.651Z"
+    },
+    {
+      "id": 27,
+      "key": "5683423a917e0e99052ce61146d10449",
+      "url": "/media/5683423a917e0e99052ce61146d10449",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel presenting at a medical conference",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 22,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:44.043Z"
+    },
+    {
+      "id": 28,
+      "key": "1edc9017f88ee134881e8b4573673bd1",
+      "url": "/media/1edc9017f88ee134881e8b4573673bd1",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel presenting on obesity and cardiovascular risk at a conference",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 23,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:45.443Z"
+    },
+    {
+      "id": 29,
+      "key": "dc4663bfedc55fcf2bf7772efcc98233",
+      "url": "/media/dc4663bfedc55fcf2bf7772efcc98233",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel presenting on obesity management at a conference",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 24,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:47.108Z"
+    },
+    {
+      "id": 30,
+      "key": "44259aa662e45bc0778b39eaf69d9cc6",
+      "url": "/media/44259aa662e45bc0778b39eaf69d9cc6",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel presenting clinical trial data at a conference",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 25,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:48.515Z"
+    },
+    {
+      "id": 31,
+      "key": "1bd12c97168a5926b0c46ab4adf4c4b0",
+      "url": "/media/1bd12c97168a5926b0c46ab4adf4c4b0",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel presenting on insulin therapy",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 26,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:49.903Z"
+    },
+    {
+      "id": 32,
+      "key": "b3fdc2ed3ea9066160edf254a471aef6",
+      "url": "/media/b3fdc2ed3ea9066160edf254a471aef6",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel on a panel discussion at a medical event",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 27,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:51.291Z"
+    },
+    {
+      "id": 33,
+      "key": "6be49385802567164616edf4258d2db6",
+      "url": "/media/6be49385802567164616edf4258d2db6",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel with fellow panelists at a medical event",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 28,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:52.689Z"
+    },
+    {
+      "id": 34,
+      "key": "4e6bc0849ce54b9ce45aaf3698f083f1",
+      "url": "/media/4e6bc0849ce54b9ce45aaf3698f083f1",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel with colleagues at a community health event",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 29,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:54.272Z"
+    },
+    {
+      "id": 35,
+      "key": "0b73c2656e73c7e2ec34edb703b75e92",
+      "url": "/media/0b73c2656e73c7e2ec34edb703b75e92",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel speaking on a panel at a medical event",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 30,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:55.667Z"
+    },
+    {
+      "id": 36,
+      "key": "54028d80d42ac6ed1c2fc3c6cac49ab0",
+      "url": "/media/54028d80d42ac6ed1c2fc3c6cac49ab0",
+      "contentType": "image/webp",
+      "alt": "Dr. Pawan Goel being felicitated at a medical event",
+      "caption": null,
+      "category": "event",
+      "sortOrder": 31,
+      "published": true,
+      "createdAt": "2026-09-01T07:57:57.170Z"
     }
   ],
   "closures": []
