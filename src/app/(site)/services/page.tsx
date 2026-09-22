@@ -4,6 +4,7 @@ import { Prose } from "@/components/site/Prose";
 import { getPublishedServices } from "@/lib/queries";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services" },
   title: "Services & Technology",
   description:
     "Continuous glucose monitoring, insulin pump therapy, diabetes education and thyroid nodule evaluation in Delhi.",

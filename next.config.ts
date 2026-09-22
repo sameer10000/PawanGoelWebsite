@@ -17,6 +17,19 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "100mb",
     },
   },
+  // The .vercel.app deployment URL serves the same pages as the real domain.
+  // Left alone it is a duplicate site competing with www.drpawangoel.com, so
+  // send it — and any other host — to the canonical domain.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "drpawangoel.vercel.app" }],
+        destination: "https://www.drpawangoel.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   // Images are served from this app's own /media/[key] route, so no external
   // hosts need allow-listing.
 };

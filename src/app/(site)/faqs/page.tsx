@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getConditionFaqs, getGeneralFaqs } from "@/lib/queries";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/faqs" },
   title: "Frequently Asked Questions",
   description:
     "Answers to common questions about consultations, reports, fasting for tests, follow-up and online consultation.",

@@ -8,6 +8,7 @@ import { getCredentials, getPublishedPhotos, getSettings } from "@/lib/queries";
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
   return {
+    alternates: { canonical: "/about" },
     title: `About ${settings.doctorName}`,
     description: settings.bioShort,
   };

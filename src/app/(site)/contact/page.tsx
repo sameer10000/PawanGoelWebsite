@@ -12,6 +12,7 @@ import {
 } from "@/lib/format";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact",
   description:
     "Phone, WhatsApp and clinic address for Dr. Pawan Goel, Consultant Endocrinologist, Shalimar Bagh, Delhi.",

@@ -3,6 +3,7 @@ import { Prose } from "@/components/site/Prose";
 import { getSettings } from "@/lib/queries";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/disclaimer" },
   title: "Medical Disclaimer",
   description:
     "The information on this website is general in nature and is not a substitute for medical consultation.",

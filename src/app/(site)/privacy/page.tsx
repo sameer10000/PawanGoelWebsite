@@ -4,6 +4,7 @@ import { getSettings } from "@/lib/queries";
 import { formatPhone } from "@/lib/format";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: "Privacy Policy",
   description:
     "How personal information submitted through this website is collected, used and protected.",

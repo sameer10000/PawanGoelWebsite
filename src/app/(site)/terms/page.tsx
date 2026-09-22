@@ -3,6 +3,7 @@ import { Prose } from "@/components/site/Prose";
 import { getSettings } from "@/lib/queries";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms" },
   title: "Terms of Use",
   description: "Terms governing the use of this website.",
 };

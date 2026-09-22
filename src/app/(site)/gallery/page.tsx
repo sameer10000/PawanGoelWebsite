@@ -5,6 +5,7 @@ import { getPublishedPhotos, getSettings } from "@/lib/queries";
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
   return {
+    alternates: { canonical: "/gallery" },
     title: "Gallery",
     description: `Photos of ${settings.doctorName}'s clinic, equipment and team.`,
   };

@@ -7,6 +7,7 @@ import { summariseSlots } from "@/lib/schedule";
 import { formatPhone, fullAddress, mapsSearchHref, telHref } from "@/lib/format";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/locations" },
   title: "Locations & OPD Timings",
   description:
     "Consulting timings for Dr. Pawan Goel across Shalimar Bagh, Punjabi Bagh, Bahadurgarh and other Delhi NCR locations.",

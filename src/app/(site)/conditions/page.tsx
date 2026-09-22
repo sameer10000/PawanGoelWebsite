@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getPublishedConditions, getSettings } from "@/lib/queries";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/conditions" },
   title: "Conditions Treated",
   description:
     "Diabetes, thyroid disorders, PCOS, obesity, osteoporosis, pituitary and adrenal conditions treated by a consultant endocrinologist in Delhi.",

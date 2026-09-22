@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import { getSettings } from "@/lib/queries";
-import { siteUrl } from "@/lib/site";
+import { isIndexable, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,6 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${settings.doctorName}`,
     },
     description: settings.metaDescription,
+    alternates: { canonical: "./" },
     openGraph: {
       title: settings.metaTitle,
       description: settings.metaDescription,
@@ -32,7 +33,11 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: "en_IN",
       siteName: settings.doctorName,
     },
-    robots: { index: true, follow: true },
+    // Previews and stray .vercel.app deployments must not compete with the
+    // live domain in search results.
+    robots: isIndexable()
+      ? { index: true, follow: true }
+      : { index: false, follow: false },
   };
 }
 

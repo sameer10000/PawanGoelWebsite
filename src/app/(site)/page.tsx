@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroCarousel } from "@/components/site/HeroCarousel";
 import { WhereToday } from "@/components/site/WhereToday";
@@ -13,6 +14,10 @@ import {
 } from "@/lib/queries";
 import { summariseSlots } from "@/lib/schedule";
 import { formatPhone, telHref, whatsappHref } from "@/lib/format";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default async function HomePage() {
   const [

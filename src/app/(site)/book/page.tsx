@@ -9,6 +9,7 @@ import {
 import { formatPhone, telHref, whatsappHref } from "@/lib/format";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/book" },
   title: "Book an Appointment",
   description:
     "Request an appointment with Dr. Pawan Goel, Consultant Endocrinologist, in Shalimar Bagh, Punjabi Bagh or Bahadurgarh.",
