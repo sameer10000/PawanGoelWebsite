@@ -9,9 +9,23 @@
  */
 const PRODUCTION_URL = "https://www.drpawangoel.com";
 
+/**
+ * A .vercel.app deployment URL is never a valid canonical host, whatever the
+ * environment says. The production env var was set to one before the domain
+ * was registered, which pointed every canonical tag at the deployment URL and
+ * kept the real site out of Google. Ignore such a value rather than trust it.
+ */
+function isDeploymentUrl(url: string): boolean {
+  try {
+    return new URL(url).hostname.endsWith(".vercel.app");
+  } catch {
+    return false;
+  }
+}
+
 export function siteUrl(): string {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
-  if (configured) return configured;
+  if (configured && !isDeploymentUrl(configured)) return configured;
 
   // Preview deployments describe themselves, so links inside a preview stay in
   // that preview. They are marked noindex below.
