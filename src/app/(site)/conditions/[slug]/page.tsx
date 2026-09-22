@@ -8,15 +8,19 @@ import {
   getSettings,
 } from "@/lib/queries";
 import { splitLines, whatsappHref } from "@/lib/format";
+import { pageTitle } from "@/lib/site";
 
 type Params = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const condition = await getConditionBySlug(slug);
+  const [condition, settings] = await Promise.all([
+    getConditionBySlug(slug),
+    getSettings(),
+  ]);
   if (!condition) return {};
   return {
-    title: condition.metaTitle || condition.name,
+    title: pageTitle(condition.metaTitle || condition.name, settings.doctorName),
     description: condition.metaDescription || condition.summary,
     alternates: { canonical: `/conditions/${condition.slug}` },
   };

@@ -1,3 +1,15 @@
+import type { Metadata } from "next";
+
+/**
+ * The root layout appends "| <doctor name>" to every page title. Titles that
+ * already name the doctor — the stored meta titles on condition pages, the
+ * location pages, the about page — would carry it twice and lose their real
+ * keywords to truncation in search results. Skip the template for those.
+ */
+export function pageTitle(title: string, doctorName: string): Metadata["title"] {
+  return title.includes(doctorName) ? { absolute: title } : title;
+}
+
 /**
  * Canonical site URL — the host Google should index, and the base for canonical
  * tags, sitemap.xml and structured data.

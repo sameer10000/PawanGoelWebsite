@@ -10,6 +10,7 @@ import {
   mapsSearchHref,
   telHref,
 } from "@/lib/format";
+import { pageTitle } from "@/lib/site";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -19,7 +20,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const settings = await getSettings();
   if (!location) return {};
   return {
-    title: `${settings.doctorName} at ${location.name}, ${location.area}`,
+    title: pageTitle(
+      `${settings.doctorName} at ${location.name}, ${location.area}`,
+      settings.doctorName,
+    ),
     description: `OPD timings, address and contact details for ${settings.doctorName}, Endocrinologist, at ${location.name}, ${location.area}, ${location.city}.`,
     alternates: { canonical: `/locations/${location.slug}` },
   };
