@@ -134,7 +134,7 @@ const LOCATIONS: SeedLocation[] = [
     fee: null,
     notes:
       "Dr. Goel's own clinic. Best place for follow-up visits, CGM reviews and insulin pump adjustment.",
-    bookingUrl: null,
+    bookingUrl: "https://tinyurl.com/Pawangoel",
     mapUrl: null,
     isPrimary: true,
     published: true,

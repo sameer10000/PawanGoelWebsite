@@ -1,10 +1,14 @@
 import { PageHeader, AdminCard } from "@/components/admin/PageHeader";
 import { SubmitButton } from "@/components/admin/ui";
-import { getSettings } from "@/lib/queries";
+import { getPublishedLocations, getSettings } from "@/lib/queries";
 import { updateSettings } from "./actions";
 
 export default async function AdminSettingsPage() {
-  const settings = await getSettings();
+  const [settings, locations] = await Promise.all([
+    getSettings(),
+    getPublishedLocations(),
+  ]);
+  const primaryClinic = locations.find((location) => location.isPrimary);
 
   return (
     <>
@@ -179,6 +183,31 @@ export default async function AdminSettingsPage() {
               />
               <p className="hint">Leave blank to hide it.</p>
             </div>
+          </div>
+        </AdminCard>
+
+        <AdminCard
+          title="Appointment booking"
+          description="Every Book appointment button sends patients to this link."
+        >
+          <div>
+            <label htmlFor="appointmentBookingUrl" className="label">
+              Booking link
+            </label>
+            <input
+              id="appointmentBookingUrl"
+              name="appointmentBookingUrl"
+              type="url"
+              required
+              defaultValue={
+                primaryClinic?.bookingUrl || "https://tinyurl.com/Pawangoel"
+              }
+              placeholder="https://tinyurl.com/Pawangoel"
+              className="input"
+            />
+            <p className="hint">
+              Enter the complete link, including https://.
+            </p>
           </div>
         </AdminCard>
 
